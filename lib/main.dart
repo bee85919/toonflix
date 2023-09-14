@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const App());
+  runApp(App());
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
         backgroundColor: Color(0xFF181818),
         body: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: 20,
+            horizontal: 40,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: 80,
@@ -32,10 +31,10 @@ class App extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w800,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 12),
                       Text(
                         'Welcome back',
                         style: TextStyle(
@@ -44,6 +43,52 @@ class App extends StatelessWidget {
                         ),
                       ),
                     ],
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 80,
+              ),
+              Text(
+                'Total Balance',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white.withOpacity(0.8),
+                ),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Text(
+                '\$ 5,194,482',
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(45),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 44,
+                      ),
+                      child: Text(
+                        'Transfer',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
                   )
                 ],
               )
