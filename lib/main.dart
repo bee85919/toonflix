@@ -4,34 +4,54 @@ void main() {
   runApp(const App());
 }
 
-class App extends StatefulWidget {
-  // no needed to be stateful
+class App extends StatelessWidget {
   const App({super.key});
 
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
         textTheme: const TextTheme(
-          titleLarge: TextStyle(
+          displayLarge: TextStyle(
             color: Colors.red,
           ),
         ),
       ),
-      home: const Scaffold(
-        backgroundColor: Color(0xFFF4EDDB),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              MyLargeTitle(),
-            ],
-          ),
+      home: const HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool showTitle = true;
+
+  void toggleTitle() {
+    setState(() {
+      showTitle = !showTitle;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF4EDDB),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            showTitle ? const MyLargeTitle() : const Text('No title'),
+            IconButton(
+              onPressed: toggleTitle,
+              icon: const Icon(Icons.remove_red_eye),
+            ),
+          ],
         ),
       ),
     );
@@ -39,18 +59,13 @@ class _AppState extends State<App> {
 }
 
 class MyLargeTitle extends StatelessWidget {
-  const MyLargeTitle({
-    Key? key,
-  }) : super(key: key);
+  const MyLargeTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       'My Large Title',
-      style: TextStyle(
-        fontSize: 30,
-        color: Theme.of(context).textTheme.titleLarge?.color,
-      ),
+      style: Theme.of(context).textTheme.displayLarge?.copyWith(fontSize: 30),
     );
   }
 }
