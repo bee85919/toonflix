@@ -1,71 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/screens/home_screen.dart';
 
 void main() {
-  runApp(const App());
+  runApp(App());
 }
 
+// ignore: use_key_in_widget_constructors
 class App extends StatelessWidget {
-  const App({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        // ignore: deprecated_member_use
+        backgroundColor: const Color(0xFFE7626C),
         textTheme: const TextTheme(
-          displayLarge: TextStyle(
-            color: Colors.red,
+          // ignore: deprecated_member_use
+          headline1: TextStyle(
+            color: Color(0xFF232B55),
           ),
         ),
+        cardColor: const Color(0xFFF4EDDB),
       ),
-      home: const HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  bool showTitle = true;
-
-  void toggleTitle() {
-    setState(() {
-      showTitle = !showTitle;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF4EDDB),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            showTitle ? const MyLargeTitle() : const Text('No title'),
-            IconButton(
-              onPressed: toggleTitle,
-              icon: const Icon(Icons.remove_red_eye),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class MyLargeTitle extends StatelessWidget {
-  const MyLargeTitle({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      'My Large Title',
-      style: Theme.of(context).textTheme.displayLarge?.copyWith(fontSize: 30),
+      home: const HomeScreen(),
     );
   }
 }
