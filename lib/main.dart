@@ -1,20 +1,21 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:toonflix/screens/home_screen.dart';
 
 void main() {
-  runApp(App());
+  runApp(const App());
 }
 
-// ignore: use_key_in_widget_constructors
 class App extends StatelessWidget {
+  const App({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        // ignore: deprecated_member_use
         backgroundColor: const Color(0xFFE7626C),
         textTheme: const TextTheme(
-          // ignore: deprecated_member_use
           headline1: TextStyle(
             color: Color(0xFF232B55),
           ),
