@@ -9,17 +9,23 @@ class ApiService {
   static const String today = "today";
 
   static Future<List<WebtoonModel>> getTodaysToons() async {
-    List<WebtoonModel> webtoonInstances = [];
-    final url = Uri.parse('$baseUrl/$today');
-    final response = await http.get(url);
-    if (response.statusCode == 200) {
-      final webtoons = jsonDecode(response.body);
-      for (var webtoon in webtoons) {
-        final instance = WebtoonModel.fromJson(webtoon);
-        webtoonInstances.add(instance);
+    try {
+      List<WebtoonModel> webtoonInstances = [];
+      final url = Uri.parse('$baseUrl/$today');
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        final webtoons = jsonDecode(response.body);
+        for (var webtoon in webtoons) {
+          final instance = WebtoonModel.fromJson(webtoon);
+          webtoonInstances.add(instance);
+        }
+        return webtoonInstances;
+      } else {
+        throw Error(); // 여기에 예외를 던짐
       }
-      return webtoonInstances;
+    } catch (e) {
+      print('Connection failed: $e');
+      throw Error();
     }
-    throw Error();
   }
 }
