@@ -4,19 +4,20 @@ import 'package:toonflix/services/api_service.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-
   final Future<List<WebtoonModel>> webtoons = ApiService.getTodaysToons();
 
   @override
   Widget build(BuildContext context) {
+    print(webtoons);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        centerTitle: true,
         elevation: 2,
         backgroundColor: Colors.white,
         foregroundColor: Colors.green,
         title: const Text(
-          "어늘의 웹툰",
+          "오늘의 웹툰",
           style: TextStyle(
             fontSize: 24,
           ),
@@ -53,7 +54,7 @@ class HomeScreen extends StatelessWidget {
         return Column(
           children: [
             Container(
-              width: 250,
+              width: 200,
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -69,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                 webtoon.thumb,
                 headers: const {
                   "User-Agent":
-                      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
+                      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
                 },
               ),
             ),
@@ -80,6 +81,7 @@ class HomeScreen extends StatelessWidget {
               webtoon.title,
               style: const TextStyle(
                 fontSize: 22,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
